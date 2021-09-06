@@ -56,7 +56,7 @@ export const errorHandler = (
 ) => {
   if (err instanceof CustomError) {
     const serializedErrors: ErrorStructure[] = err.serializeErrors();
-    res.status(err.statusCode).send({ errors: serializedErrors });
+    return res.status(err.statusCode).send({ errors: serializedErrors });
   }
 
   //generic response for unknown error types
