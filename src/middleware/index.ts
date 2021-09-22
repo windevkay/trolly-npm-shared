@@ -58,6 +58,7 @@ export const errorHandler = (
     const serializedErrors: ErrorStructure[] = err.serializeErrors();
     return res.status(err.statusCode).send({ errors: serializedErrors });
   }
+  console.error(err);
 
   //generic response for unknown error types
   res.status(400).send("something went wrong...");
