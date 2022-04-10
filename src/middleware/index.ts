@@ -86,7 +86,7 @@ export const currentUser = (
   next: NextFunction
 ) => {
   if (!req.session?.jwt) {
-    next();
+    //next();
   }
   try {
     const payload = jwt.verify(
@@ -94,7 +94,6 @@ export const currentUser = (
       process.env.JWT_KEY!
     ) as UserPayload;
     req.currentUser = payload;
-    return;
   } catch (error) {}
   next();
 };
