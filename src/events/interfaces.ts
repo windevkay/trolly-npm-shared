@@ -56,3 +56,12 @@ export interface ExpirationCompleteEvent {
     orderId: string;
   };
 }
+
+export interface PaymentCreatedEvent {
+  subject: Subjects.PaymentCreated;
+  data: {
+    orderId: string;
+    stripeId: string;
+    id: string;
+  };
+}
