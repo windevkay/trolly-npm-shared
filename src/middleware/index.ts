@@ -85,16 +85,15 @@ export const currentUser = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.session?.jwt) {
-    //next();
+  if (req.session?.jwt) {
+    try {
+      const payload = jwt.verify(
+        req.session!.jwt,
+        process.env.JWT_KEY!
+      ) as UserPayload;
+      req.currentUser = payload;
+    } catch (error) {}
   }
-  try {
-    const payload = jwt.verify(
-      req.session!.jwt,
-      process.env.JWT_KEY!
-    ) as UserPayload;
-    req.currentUser = payload;
-  } catch (error) {}
   next();
 };
 /**
